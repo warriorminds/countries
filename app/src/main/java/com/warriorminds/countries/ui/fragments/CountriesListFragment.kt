@@ -1,10 +1,11 @@
 package com.warriorminds.countries.ui.fragments
 
 
+import android.app.SearchManager
+import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -30,6 +31,8 @@ class CountriesListFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidSupportInjection.inject(this)
         super.onCreate(savedInstanceState)
+
+        setHasOptionsMenu(true)
 
         viewModel = ViewModelProviders.of(this, viewModelFactory)[ListViewModel::class.java]
         viewModel.countries.observe(this, Observer {
@@ -65,4 +68,36 @@ class CountriesListFragment : Fragment() {
         viewModel.getCountries()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.list_menu, menu)
+        manageSearchView(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+        return when (id) {
+            R.id.action_search -> true
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+
+    private fun manageSearchView(menu: Menu) {
+        val searchManager = context?.getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        val searchView = menu.findItem(R.id.action_search).actionView as SearchView
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(activity!!.componentName))
+        searchView.maxWidth = Int.MAX_VALUE
+        searchView.setOnQueryTextListener(object : android.widget.SearchView.OnQueryTextListener,
+            SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                countriesAdapter.filter.filter(query)
+                return false
+            }
+
+            override fun onQueryTextChange(query: String): Boolean {
+                countriesAdapter.filter.filter(query)
+                return false
+            }
+        })
+    }
 }
