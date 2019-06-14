@@ -2,6 +2,7 @@ package com.warriorminds.countries.di.modules
 
 import com.warriorminds.countries.ui.activities.MainActivity
 import com.warriorminds.countries.ui.fragments.CountriesListFragment
+import com.warriorminds.countries.ui.fragments.DetailsFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -12,4 +13,7 @@ abstract class AndroidModule {
 
     @ContributesAndroidInjector
     abstract fun countriesListFragment(): CountriesListFragment
+
+    @ContributesAndroidInjector
+    abstract fun detailsFragment(): DetailsFragment
 }

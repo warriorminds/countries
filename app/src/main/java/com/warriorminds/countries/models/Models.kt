@@ -1,5 +1,7 @@
 package com.warriorminds.countries.models
 
+import java.io.Serializable
+
 data class Country(val name: String,
                    val topLevelDomain: List<String>,
                    val alpha2Code: String,
@@ -22,17 +24,17 @@ data class Country(val name: String,
                    val languages: List<Language>,
                    val translations: Translation,
                    val flag: String,
-                   val regionalBlocks: List<RegionalBlock>,
-                   val cioc: String)
+                   val regionalBlocs: List<RegionalBlock>,
+                   val cioc: String): Serializable
 
 data class Currency(val code: String,
                     val name: String,
-                    val symbol: String)
+                    val symbol: String): Serializable
 
 data class Language(val iso639_1: String,
                     val iso639_2: String,
                     val name: String,
-                    val nativeName: String)
+                    val nativeName: String): Serializable
 
 data class Translation(val de: String,
                        val es: String,
@@ -43,9 +45,9 @@ data class Translation(val de: String,
                        val pt: String,
                        val nl: String,
                        val hr: String,
-                       val fa: String)
+                       val fa: String): Serializable
 
 data class RegionalBlock(val acronym: String,
                          val name: String,
                          val otherAcronyms: List<String>,
-                         val otherNames: List<String>)
+                         val otherNames: List<String>): Serializable

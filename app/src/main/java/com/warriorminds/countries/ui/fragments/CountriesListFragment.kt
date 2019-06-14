@@ -9,11 +9,13 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.warriorminds.countries.R
 import com.warriorminds.countries.adapters.CountriesAdapter
+import com.warriorminds.countries.models.Country
 import com.warriorminds.countries.viewmodels.ListViewModel
 import com.warriorminds.countries.viewmodels.ViewModelFactory
 import dagger.android.support.AndroidSupportInjection
@@ -27,6 +29,10 @@ class CountriesListFragment : Fragment() {
     @Inject
     lateinit var countriesAdapter: CountriesAdapter
     private lateinit var viewModel: ListViewModel
+
+    companion object {
+        const val COUNTRY_ARG = "country_arg"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidSupportInjection.inject(this)
@@ -68,6 +74,11 @@ class CountriesListFragment : Fragment() {
         viewModel.getCountries()
     }
 
+    override fun onResume() {
+        super.onResume()
+        activity?.title = getString(R.string.app_name)
+    }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.list_menu, menu)
         manageSearchView(menu)
@@ -80,7 +91,6 @@ class CountriesListFragment : Fragment() {
             else -> super.onOptionsItemSelected(item)
         }
     }
-
 
     private fun manageSearchView(menu: Menu) {
         val searchManager = context?.getSystemService(Context.SEARCH_SERVICE) as SearchManager

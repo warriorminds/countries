@@ -1,14 +1,17 @@
 package com.warriorminds.countries.adapters
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import com.warriorminds.countries.R
 import com.warriorminds.countries.models.Country
+import com.warriorminds.countries.ui.fragments.CountriesListFragment
 import com.warriorminds.countries.utils.FlagSize
 import com.warriorminds.countries.utils.getFlagUrl
 import kotlinx.android.synthetic.main.country_list_item.view.*
@@ -28,6 +31,12 @@ class CountriesAdapter @Inject constructor(): RecyclerView.Adapter<CountriesAdap
         val country = filteredCountries[position]
         holder.itemView.country_name.text = country.name
         Picasso.get().load(country.getFlagUrl(FlagSize.SMALL)).into(holder.itemView.flag_image)
+
+        val bundle = Bundle()
+        bundle.putSerializable(CountriesListFragment.COUNTRY_ARG, country)
+        holder.itemView.setOnClickListener (
+            Navigation.createNavigateOnClickListener(R.id.details_action, bundle)
+        )
     }
 
     fun setCountries(countries: List<Country>) {
