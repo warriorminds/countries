@@ -7,7 +7,8 @@
     <string name="details_region">%1$s - %2$s (Region)</string>
     <string name="details_capital">%1$s (Capital)</string>
     <string name="details_population">%1$s (Population)</string>
-    <string name="details_area">%1$s km<sup>2</sup></string>
+    <string name="details_area">%1$s km2</string>
     <string name="details_phone_codes">%1$s (Phone Codes)</string>
-    <string name="details_current_times">%1$s (Current Times)</string>
+    <string name="details_current_times">%1$s (Time Zones)</string>
+
 </resources>

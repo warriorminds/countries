@@ -18,5 +18,18 @@
 
     <fragment
             android:id="@+id/details_destination"
-            android:name="com.warriorminds.countries.ui.fragments.DetailsFragment" />
+            android:name="com.warriorminds.countries.ui.fragments.DetailsFragment">
+        <action
+                android:id="@+id/map_action"
+                app:destination="@+id/map_destination"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right">
+        </action>
+    </fragment>
+
+    <fragment
+            android:id="@+id/map_destination"
+            android:name="com.warriorminds.countries.ui.fragments.MapFragment" />
 </navigation>

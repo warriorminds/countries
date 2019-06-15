@@ -2,6 +2,8 @@ package com.warriorminds.countries.di.modules
 
 import android.content.Context
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import com.warriorminds.countries.maps.GoogleMapProvider
+import com.warriorminds.countries.maps.MapProvider
 import com.warriorminds.countries.network.CountriesService
 import com.warriorminds.countries.repositories.CountriesRepository
 import com.warriorminds.countries.repositories.CountriesRepositoryImpl
@@ -46,4 +48,8 @@ class CountriesModule(private val context: Context) {
     @Singleton
     @Provides
     fun provideCountriesRepository(repositoryImpl: CountriesRepositoryImpl): CountriesRepository = repositoryImpl
+
+    @Singleton
+    @Provides
+    fun provideMapProvider(googleMapProvider: GoogleMapProvider): MapProvider = googleMapProvider
 }

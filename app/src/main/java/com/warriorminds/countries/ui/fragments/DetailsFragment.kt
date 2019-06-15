@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import com.squareup.picasso.Picasso
 import com.warriorminds.countries.R
 import com.warriorminds.countries.models.Country
@@ -18,6 +19,8 @@ import com.warriorminds.countries.utils.moreInformation
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_details.*
 import java.text.SimpleDateFormat
+import java.time.Instant
+import java.time.ZoneId
 import java.util.*
 
 class DetailsFragment : Fragment() {
@@ -45,16 +48,20 @@ class DetailsFragment : Fragment() {
             details_area.text = Html.fromHtml(getString(R.string.details_area, country.area.getCommaFormattedNumber()))
             details_phone_codes.text = getString(R.string.details_phone_codes, country.callingCodes.joinToString(separator = ", "))
 
-            val currentTimes = country.timezones.joinToString(separator = ", ") { timezone ->
-                val localTimezone = TimeZone.getTimeZone(timezone.replace("UTC", "GMT"))
-                val dateFormat = SimpleDateFormat("HH:mm")
-                dateFormat.timeZone = localTimezone
-                dateFormat.format(Date())
-            }
+            val currentTimes = country.timezones.joinToString(separator = ", ")
             details_time.text = getString(R.string.details_current_times, currentTimes)
             details_extra.text = country.moreInformation()
             Picasso.get().load(country.getFlagUrl(FlagSize.BIG)).into(details_flag)
 
+            if (!country.latlng.isNullOrEmpty()) {
+                val bundle = Bundle()
+                bundle.putDouble(MapFragment.LATITUDE, country.latlng[0])
+                bundle.putDouble(MapFragment.LONGITUDE, country.latlng[1])
+                fab_map.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.map_action, bundle))
+                fab_map.show()
+            } else {
+                fab_map.hide()
+            }
         }
     }
 }
