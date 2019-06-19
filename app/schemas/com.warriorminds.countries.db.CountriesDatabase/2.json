@@ -1,0 +1,180 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 2,
+    "identityHash": "634279f8c8f8c4b94b0541385c3fad7d",
+    "entities": [
+      {
+        "tableName": "Country",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`name` TEXT NOT NULL, `topLevelDomain` TEXT NOT NULL, `alpha2Code` TEXT NOT NULL, `alpha3Code` TEXT NOT NULL, `callingCodes` TEXT NOT NULL, `capital` TEXT NOT NULL, `altSpellings` TEXT NOT NULL, `region` TEXT NOT NULL, `subregion` TEXT NOT NULL, `population` INTEGER NOT NULL, `latlng` TEXT NOT NULL, `demonym` TEXT NOT NULL, `area` REAL NOT NULL, `gini` REAL NOT NULL, `timezones` TEXT NOT NULL, `borders` TEXT NOT NULL, `nativeName` TEXT NOT NULL, `numericCode` TEXT NOT NULL, `currencies` TEXT NOT NULL, `languages` TEXT NOT NULL, `translations` TEXT NOT NULL, `flag` TEXT NOT NULL, `regionalBlocs` TEXT NOT NULL, `cioc` TEXT, PRIMARY KEY(`name`))",
+        "fields": [
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "topLevelDomain",
+            "columnName": "topLevelDomain",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "alpha2Code",
+            "columnName": "alpha2Code",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "alpha3Code",
+            "columnName": "alpha3Code",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "callingCodes",
+            "columnName": "callingCodes",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "capital",
+            "columnName": "capital",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "altSpellings",
+            "columnName": "altSpellings",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "region",
+            "columnName": "region",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "subregion",
+            "columnName": "subregion",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "population",
+            "columnName": "population",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "latlng",
+            "columnName": "latlng",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "demonym",
+            "columnName": "demonym",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "area",
+            "columnName": "area",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "gini",
+            "columnName": "gini",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "timezones",
+            "columnName": "timezones",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "borders",
+            "columnName": "borders",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nativeName",
+            "columnName": "nativeName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "numericCode",
+            "columnName": "numericCode",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "currencies",
+            "columnName": "currencies",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "languages",
+            "columnName": "languages",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "translations",
+            "columnName": "translations",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "flag",
+            "columnName": "flag",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "regionalBlocs",
+            "columnName": "regionalBlocs",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "cioc",
+            "columnName": "cioc",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "name"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [
+          {
+            "name": "index_Country_name",
+            "unique": true,
+            "columnNames": [
+              "name"
+            ],
+            "createSql": "CREATE UNIQUE INDEX `index_Country_name` ON `${TABLE_NAME}` (`name`)"
+          }
+        ],
+        "foreignKeys": []
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"634279f8c8f8c4b94b0541385c3fad7d\")"
+    ]
+  }
+}

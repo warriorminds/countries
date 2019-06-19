@@ -1,10 +1,14 @@
 package com.warriorminds.countries.di.modules
 
 import android.content.Context
+import androidx.room.Room
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import com.warriorminds.countries.db.CountriesDatabase
 import com.warriorminds.countries.maps.GoogleMapProvider
 import com.warriorminds.countries.maps.MapProvider
 import com.warriorminds.countries.network.CountriesService
+import com.warriorminds.countries.network.monitor.NetworkMonitor
+import com.warriorminds.countries.network.monitor.NetworkMonitorImpl
 import com.warriorminds.countries.repositories.CountriesRepository
 import com.warriorminds.countries.repositories.CountriesRepositoryImpl
 import dagger.Module
@@ -52,4 +56,15 @@ class CountriesModule(private val context: Context) {
     @Singleton
     @Provides
     fun provideMapProvider(googleMapProvider: GoogleMapProvider): MapProvider = googleMapProvider
+
+    @Singleton
+    @Provides
+    fun providesDatabase(context: Context) : CountriesDatabase =
+        Room.databaseBuilder(context, CountriesDatabase::class.java, "countries.db")
+            .fallbackToDestructiveMigration()
+            .build()
+
+    @Singleton
+    @Provides
+    fun providesnetworkMonitor(networkMonitor: NetworkMonitorImpl): NetworkMonitor = networkMonitor
 }

@@ -43,12 +43,12 @@ class DetailsFragment : Fragment() {
             activity!!.title = country.name
             details_continent.text = getString(R.string.details_region, country.region, country.subregion)
             details_capital.text = getString(R.string.details_capital, country.capital)
-            details_population.text = getString(R.string.details_population, country.population.getCommaFormattedNumber())
+            details_population.text = getString(R.string.details_population, country.population?.getCommaFormattedNumber())
 
-            details_area.text = Html.fromHtml(getString(R.string.details_area, country.area.getCommaFormattedNumber()))
-            details_phone_codes.text = getString(R.string.details_phone_codes, country.callingCodes.joinToString(separator = ", "))
+            details_area.text = Html.fromHtml(getString(R.string.details_area, country.area?.getCommaFormattedNumber()))
+            details_phone_codes.text = getString(R.string.details_phone_codes, country.callingCodes?.joinToString(separator = ", "))
 
-            val currentTimes = country.timezones.joinToString(separator = ", ")
+            val currentTimes = country.timezones?.joinToString(separator = ", ")
             details_time.text = getString(R.string.details_current_times, currentTimes)
             details_extra.text = country.moreInformation()
             Picasso.get().load(country.getFlagUrl(FlagSize.BIG)).into(details_flag)

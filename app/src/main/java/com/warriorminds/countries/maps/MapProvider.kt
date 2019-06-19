@@ -2,7 +2,6 @@ package com.warriorminds.countries.maps
 
 import android.os.Bundle
 import android.view.View
-import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLngBounds
 
 interface MapProvider {

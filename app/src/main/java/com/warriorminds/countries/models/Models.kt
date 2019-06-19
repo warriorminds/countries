@@ -1,31 +1,37 @@
 package com.warriorminds.countries.models
 
+import androidx.room.Entity
+import androidx.room.Index
+import androidx.room.PrimaryKey
 import java.io.Serializable
 
-data class Country(val name: String,
-                   val topLevelDomain: List<String>,
-                   val alpha2Code: String,
-                   val alpha3Code: String,
-                   val callingCodes: List<String>,
-                   val capital: String,
-                   val altSpellings: List<String>,
-                   val region: String,
-                   val subregion: String,
-                   val population: Int,
-                   val latlng: List<Double>,
-                   val demonym: String,
-                   val area: Double,
-                   val gini: Double,
-                   val timezones: List<String>,
-                   val borders: List<String>,
-                   val nativeName: String,
-                   val numericCode: String,
-                   val currencies: List<Currency>,
-                   val languages: List<Language>,
-                   val translations: Translation,
-                   val flag: String,
-                   val regionalBlocs: List<RegionalBlock>,
-                   val cioc: String): Serializable
+@Entity(indices = [(Index("name", unique = true))])
+data class Country(
+                   @PrimaryKey
+                   val name: String,
+                   val topLevelDomain: List<String>?,
+                   val alpha2Code: String?,
+                   val alpha3Code: String?,
+                   val callingCodes: List<String>?,
+                   val capital: String?,
+                   val altSpellings: List<String>?,
+                   val region: String?,
+                   val subregion: String?,
+                   val population: Int?,
+                   val latlng: List<Double>?,
+                   val demonym: String?,
+                   val area: Double?,
+                   val gini: Double?,
+                   val timezones: List<String>?,
+                   val borders: List<String>?,
+                   val nativeName: String?,
+                   val numericCode: String?,
+                   val currencies: List<Currency>?,
+                   val languages: List<Language>?,
+                   val translations: Translation?,
+                   val flag: String?,
+                   val regionalBlocs: List<RegionalBlock>?,
+                   val cioc: String?): Serializable
 
 data class Currency(val code: String,
                     val name: String,
