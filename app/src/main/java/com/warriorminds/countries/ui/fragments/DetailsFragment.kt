@@ -40,7 +40,7 @@ class DetailsFragment : Fragment() {
 
         arguments?.let {
             val country = it[COUNTRY_ARG] as Country
-            activity!!.title = country.name
+            activity?.title = country.name
             details_continent.text = getString(R.string.details_region, country.region, country.subregion)
             details_capital.text = getString(R.string.details_capital, country.capital)
             details_population.text = getString(R.string.details_population, country.population?.getCommaFormattedNumber())
